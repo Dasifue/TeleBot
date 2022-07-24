@@ -26,7 +26,7 @@ def send_welcome_message(message):
     markup = InlineKeyboardMarkup()
     markup.row_width = 1
     menu = InlineKeyboardButton("Menu", callback_data="menu")
-    contacts = InlineKeyboardButton("Mail", url="dasifue@gmail.com")
+    contacts = InlineKeyboardButton("Mail", url="https://web.telegram.org/k/#@dasifue")
     markup.add(menu)
     markup.add(contacts)
     bot.send_message(message.chat.id, text, reply_markup=markup)
