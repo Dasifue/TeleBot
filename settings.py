@@ -1,3 +1,5 @@
-BOT_TOKEN = "5388042808:AAFFtSaRFUSnp4ZyzLgdjERQEgppkq3IktI"
+from env import TOKEN
+
+BOT_TOKEN = TOKEN
 
 URL = "https://www.house.kg"

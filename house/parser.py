@@ -1,20 +1,8 @@
 import requests
 
 from bs4 import BeautifulSoup as BS
-from settings import URL
 
 
-apartment_categories = {
-    "1 room" : URL + "/kupit?rooms=1",
-    "2 rooms" : URL + "/kupit-kvartiru?rooms=2",
-    "3 rooms" : URL + "/kupit-kvartiru?rooms=3",
-    "4 rooms" : URL + "/kupit-kvartiru?rooms=5",
-    "5 rooms" : URL + "/kupit-kvartiru?rooms=6",
-    "6 rooms" : URL + "/kupit-kvartiru?rooms=7",
-    "open plan" : URL + "/kupit-kvartiru?rooms=8"
-}
-
-        
 def get_request(url: str):
     response = requests.get(url)
     if response.status_code == 200:
@@ -65,9 +53,11 @@ def get_html_data(html):
 
 
 
-def main(room_quantity: str, page_number: int = 1) -> list:
-    page_url = f"&page={page_number}"
-    house_url_response = get_request(apartment_categories.get(room_quantity)) + page_url
-    house_data = get_html_data(house_url_response)
+def main(category: dict, room_quantity: str = False) -> list:
+    if room_quantity:
+        url_response = get_request(category.get(room_quantity))
+    else:
+        url_response = get_request(category)
+    data = get_html_data(url_response)
 
-    return house_data
+    return data
